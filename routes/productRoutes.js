@@ -22,6 +22,9 @@ router.get('/food', productsController.getAllFood);
 router.get('/days', productsController.getAllDays);
 router.get('/bodyparts', productsController.getAllBodyParts);
 router.get('/animals', productsController.getAllAnimals);
+router.get('/nouns', productsController.getAllNouns);
+router.get('/adverbs', productsController.getAllAdverbs);
+router.get('/adjectives', productsController.getAllAdjectives);
 
 router.route('/recentProducts').get(productsController.getRecentProducts);
 

@@ -195,6 +195,63 @@ exports.getAllAnimals = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getAllNouns = catchAsync(async (req, res, next) => {
+  let Nouns;
+  const nounsCategorey = await Categories.find({
+    name: { $eq: 'Noun' }
+  }).populate('products');
+  nounsCategorey.forEach(function(categorey) {
+    Nouns = categorey.products.reverse().slice(0, 20);
+  });
+
+  // SEND RESPONSE
+  res.status(200).json({
+    status: 'success',
+    results: Nouns.length,
+    data: {
+      Nouns: Nouns
+    }
+  });
+});
+
+exports.getAllAdverbs = catchAsync(async (req, res, next) => {
+  let adverbs;
+  const adverbsCategorey = await Categories.find({
+    name: { $eq: 'adverb' }
+  }).populate('products');
+  adverbsCategorey.forEach(function(categorey) {
+    adverbs = categorey.products.reverse().slice(0, 20);
+  });
+
+  // SEND RESPONSE
+  res.status(200).json({
+    status: 'success',
+    results: adverbs.length,
+    data: {
+      adverbs: adverbs
+    }
+  });
+});
+
+exports.getAllAdjectives = catchAsync(async (req, res, next) => {
+  let adjectives;
+  const adjectivesCategorey = await Categories.find({
+    name: { $eq: 'adjective' }
+  }).populate('products');
+  adjectivesCategorey.forEach(function(categorey) {
+    adjectives = categorey.products.reverse().slice(0, 20);
+  });
+
+  // SEND RESPONSE
+  res.status(200).json({
+    status: 'success',
+    results: adjectives.length,
+    data: {
+      adjectives: adjectives
+    }
+  });
+});
+
 exports.createProduct = catchAsync(async (req, res, next) => {
   const newProduct = await Product.create(req.body);
 
