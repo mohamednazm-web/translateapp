@@ -1,0 +1,105 @@
+<div class="wrapper">
+    <!-- Navbar Start -->
+    <%- include('../partials/header'); %>
+
+
+        <%- include('../partials/Language.ejs'); %>
+            <!-- Navbar End -->
+            <!-- Main Container Start -->
+            <main class="main--container">
+                <!-- Page Header End -->
+
+                <!-- Main Content Start -->
+                <section class="main--content p-3">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <!-- Form Wizard Start -->
+                            <form action="/admin_dashboard" enctype="multipart/form-data" method="post" id="formWizard" class="form--wizard">
+                                <% if (messageSuccessAdd.length > 0) { %>
+                                    <div class="alert alert-success" style="font-size: 2rem; text-align: center;">
+                                        <%= messageSuccessAdd %>
+                                    </div>
+                                    <% } %>
+                                        <h3 style="text-align: center;  color:black; background-color: rgb(6, 110, 140);" class="p-2">
+                                            <%= i18n.__("Add Word")%>
+                                        </h3>
+                                        <section class="pt-5">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>
+                                                    <span class="label-text">
+                                                        title
+                                                    </span>
+                                                    <input type="text" name="title"
+                                                        placeholder="title"
+                                                    class="form-control" required>
+                                                </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>
+                                                    <span class="label-text">
+                                                        subtitle
+                                                    </span>
+                                                    <input type="text" name="subtitle"
+                                                        placeholder="subtitle"
+                                                    class="form-control" required>
+                                                </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>
+                                                    <span class="label-text">
+                                                        voice url
+                                                    </span>
+                                                    <input type="text" name="voice"
+                                                        placeholder="voice"
+                                                    class="form-control" required>
+                                                </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>
+                                                    <span class="label-text">
+                                                        <%= i18n.__("Category")%>
+                                                    </span>
+                                                    <select name="categories" class="form-control" required>
+                                                        <option value="">
+                                                            <%= i18n.__("choose a category")%>
+                                                        </option>
+                                                        <% categories.forEach(function(category) { %>
+                                                            <option value="<%= category._id %>">
+                                                                <%= category.name %>
+                                                            </option>
+                                                            <% }); %>
+                                                    </select>
+                                                    </select>
+                                                </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="P-3">
+                                            <div class="row">
+                                        </section>
+                                        <div class="col-md-12 pt-4">
+                                            <div class="form-group" style="text-align: center;">
+                                                <label>
+                                            <span class="label-text"></span>
+                                            <button type="submit" class="btn btn-success" style="border-radius:5px;">
+                                                <%= i18n.__("ADD YOUR WORD")%>
+                                            </button>
+                                        </label>
+                                            </div>
+                                        </div>
+                            </form>
+                            </div>
+                        </div>
+                        <!-- Main Content End -->
+            </main>
+            <!-- Main Container End -->
+            </div>
