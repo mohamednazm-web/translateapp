@@ -211,13 +211,13 @@ var i18n = require('i18n');
 
 i18n.configure({
   //define how many languages we would support in our application
-  locales: ['en', 'en', 'ar'],
+  locales: ['ku', 'en', 'ar'],
 
   //define the path to language json files, default is /locales
   directory: __dirname + '/locales',
 
   //define the default language
-  defaultLocale: 'en',
+  defaultLocale: 'ku',
 
   // define a custom cookie name to parse locale settings from
   cookie: 'i18n'
@@ -241,8 +241,8 @@ app.use((req, res, next) => {
 //init i18n after cookie-parser
 app.use(i18n.init);
 
-app.get('/en', function(req, res) {
-  res.cookie('i18n', 'en');
+app.get('/ku', function(req, res) {
+  res.cookie('i18n', 'ku');
   res.redirect('back');
 });
 
@@ -316,7 +316,7 @@ app.get('/login', async (req, res) => {
 // });
 
 app.use(function(req, res, next) {
-  var locale = 'en';
+  var locale = 'ku';
   req.setLocale(locale);
   res.locals.language = locale;
   next();
