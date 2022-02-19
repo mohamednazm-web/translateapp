@@ -51,7 +51,7 @@ exports.deleteProductWithAdminDashboard = async (req, res, next) => {
     if (!doc) {
       return next(new AppError('No document found with that ID', 404));
     } else {
-      res.redirect('back'); // agadar ba pewista wa be agar na refersh nabitawa zor mwhima wakw framwork ish daka refersh daka
+      res.redirect('back'); //pewista wa be agar na refersh nabitawa
     }
   }
 };
