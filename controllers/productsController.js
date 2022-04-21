@@ -28,7 +28,9 @@ exports.getAllAlphabetic = catchAsync(async (req, res, next) => {
   let alphabetic;
   const carAlphabeticCategorey = await Categories.find({
     name: { $eq: 'alphabetic' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   carAlphabeticCategorey.forEach(function(categorey) {
     alphabetic = categorey.products.reverse().slice(0, 20);
   });
@@ -47,7 +49,9 @@ exports.getAllNumbers = catchAsync(async (req, res, next) => {
   let numbers;
   const numbersCategorey = await Categories.find({
     name: { $eq: 'numbers' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   numbersCategorey.forEach(function(categorey) {
     numbers = categorey.products.reverse().slice(0, 20);
   });
@@ -66,7 +70,9 @@ exports.getAllCountries = catchAsync(async (req, res, next) => {
   let countries;
   const countriesCategorey = await Categories.find({
     name: { $eq: 'countries' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   countriesCategorey.forEach(function(categorey) {
     countries = categorey.products.reverse().slice(0, 20);
   });
@@ -85,7 +91,9 @@ exports.getAllTime = catchAsync(async (req, res, next) => {
   let time;
   const timeCategorey = await Categories.find({
     name: { $eq: 'time' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   timeCategorey.forEach(function(categorey) {
     time = categorey.products.reverse().slice(0, 20);
   });
@@ -104,7 +112,9 @@ exports.getAllColors = catchAsync(async (req, res, next) => {
   let colors;
   const colorsCategorey = await Categories.find({
     name: { $eq: 'colors' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   colorsCategorey.forEach(function(categorey) {
     colors = categorey.products.reverse().slice(0, 20);
   });
@@ -123,7 +133,9 @@ exports.getAllFood = catchAsync(async (req, res, next) => {
   let food;
   const foodCategorey = await Categories.find({
     name: { $eq: 'food' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   foodCategorey.forEach(function(categorey) {
     food = categorey.products.reverse().slice(0, 20);
   });
@@ -142,7 +154,9 @@ exports.getAllDays = catchAsync(async (req, res, next) => {
   let days;
   const daysCategorey = await Categories.find({
     name: { $eq: 'days' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   daysCategorey.forEach(function(categorey) {
     days = categorey.products.reverse().slice(0, 20);
   });
@@ -161,7 +175,9 @@ exports.getAllBodyParts = catchAsync(async (req, res, next) => {
   let bodyparts;
   const bodypartsCategorey = await Categories.find({
     name: { $eq: 'bodyparts' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   bodypartsCategorey.forEach(function(categorey) {
     bodyparts = categorey.products.reverse().slice(0, 20);
   });
@@ -180,7 +196,9 @@ exports.getAllAnimals = catchAsync(async (req, res, next) => {
   let animals;
   const animalsCategorey = await Categories.find({
     name: { $eq: 'animals' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   animalsCategorey.forEach(function(categorey) {
     animals = categorey.products.reverse().slice(0, 20);
   });
@@ -199,7 +217,9 @@ exports.getAllNouns = catchAsync(async (req, res, next) => {
   let Nouns;
   const nounsCategorey = await Categories.find({
     name: { $eq: 'Noun' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   nounsCategorey.forEach(function(categorey) {
     Nouns = categorey.products.reverse().slice(0, 20);
   });
@@ -218,7 +238,9 @@ exports.getAllAdverbs = catchAsync(async (req, res, next) => {
   let adverbs;
   const adverbsCategorey = await Categories.find({
     name: { $eq: 'adverb' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   adverbsCategorey.forEach(function(categorey) {
     adverbs = categorey.products.reverse().slice(0, 20);
   });
@@ -237,7 +259,9 @@ exports.getAllAdjectives = catchAsync(async (req, res, next) => {
   let adjectives;
   const adjectivesCategorey = await Categories.find({
     name: { $eq: 'adjective' }
-  }).populate('products');
+  })
+    .populate('products')
+    .sort({ _id: -1 });
   adjectivesCategorey.forEach(function(categorey) {
     adjectives = categorey.products.reverse().slice(0, 20);
   });
@@ -270,7 +294,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
-  const id = req.params.id;
+  const { id } = req.params;
   //const product = await Product.findOne({ _id });
   const { title, categories, subtitle, voice } = req.body;
   const updateProduct = await Product.findByIdAndUpdate(
@@ -282,7 +306,6 @@ exports.updateProductWithAdminDashboard = catchAsync(async (req, res, next) => {
     }
   );
 
-  const oldCategoryId = updateProduct.categories._id;
   //console.log(oldCategoryId);
 
   const doc = await Categories.updateOne(

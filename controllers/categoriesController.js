@@ -4,38 +4,39 @@ const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
 
 exports.getAllCategories = catchAsync(async (req, res, next) => {
-    const AllCategories = await Categories.find().populate('products');
+  const AllCategories = await Categories.find()
+    .populate('products')
+    .sort({ _id: -1 });
 
-    //console.log(AllCategories);
+  //console.log(AllCategories);
 
-    // SEND RESPONSE
-    res.status(200).json({
-        // 200 stands for its okay
-        status: 'success',
-        results: AllCategories.length, // for multiple Model
-        data: {
-            AllCategories
-        }
-    });
+  // SEND RESPONSE
+  res.status(200).json({
+    // 200 stands for its okay
+    status: 'success',
+    results: AllCategories.length, // for multiple Model
+    data: {
+      AllCategories
+    }
+  });
 });
 
 exports.getOneCategorey = catchAsync(async (req, res, next) => {
-    const OneCategorey = await Categories.findById(req.params.id).populate('products');
+  const OneCategorey = await Categories.findById(req.params.id).populate(
+    'products'
+  );
+  //console.log(AllCategories);
 
-    //console.log(AllCategories);
-
-    // SEND RESPONSE
-    res.status(200).json({
-        // 200 stands for its okay
-        status: 'success',
-        results: OneCategorey.length, // for multiple Model
-        data: {
-            OneCategorey
-        }
-    });
+  // SEND RESPONSE
+  res.status(200).json({
+    // 200 stands for its okay
+    status: 'success',
+    results: OneCategorey.length, // for multiple Model
+    data: {
+      OneCategorey
+    }
+  });
 });
-
-
 
 //exports.getCategory = factory.getOne(Categories);
 //exports.getAllCategories = factory.getAll(Categories);
