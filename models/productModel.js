@@ -11,6 +11,7 @@ const posterSchema = new mongoose.Schema(
     voice: {
       type: String
     },
+    isFavorite: false,
     categories: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Categories'

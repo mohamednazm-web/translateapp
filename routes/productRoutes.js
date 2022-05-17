@@ -13,6 +13,8 @@ router
   .delete(productsController.deleteProduct)
   .put(productsController.updateProductWithAdminDashboard);
 
+router.post('/isFavorite', productsController.isFavorite);
+
 router.get('/alphabetic', productsController.getAllAlphabetic);
 router.get('/numbers', productsController.getAllNumbers);
 router.get('/countries', productsController.getAllCountries);

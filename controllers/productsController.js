@@ -1,8 +1,28 @@
+const { ObjectID } = require('mongodb');
 const Product = require('./../models/productModel');
 const Categories = require('./../models/categoriesModel');
 const catchAsync = require('./../utils/catchAsync');
-const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
+
+// Get Recent Products for shop
+exports.isFavorite = catchAsync(async (req, res, next) => {
+  // db.collection('user').update({'_id':ObjectID(req.session.loggedIn)}, {$set: {image : filename}}, {w:1}, function(err, result){}
+  const updateProduct = await Product.update(
+    { _id: ObjectID(req.body.id) },
+    { $set: { isFavorite: req.body.isFavorite } }
+  );
+
+  console.log(updateProduct);
+
+  // SEND RESPONSE
+  res.status(200).json({
+    status: 'success',
+    results: updateProduct.length,
+    data: {
+      recentProducts: updateProduct
+    }
+  });
+});
 
 // Get Recent Products for shop
 exports.getRecentProducts = catchAsync(async (req, res, next) => {
