@@ -65,6 +65,50 @@ exports.getAllAlphabetic = catchAsync(async (req, res, next) => {
   });
 });
 
+// Get Recent Products for shop
+exports.getAllCommonPhrases = catchAsync(async (req, res, next) => {
+  let commonPhrases;
+  const carAlphabeticCommonPhrases = await Categories.find({
+    name: { $eq: 'commonPhraces' }
+  })
+    .populate('products')
+    .sort({ _id: -1 });
+  carAlphabeticCommonPhrases.forEach(function(categorey) {
+    commonPhrases = categorey.products.reverse().slice(0, 20);
+  });
+
+  // SEND RESPONSE
+  res.status(200).json({
+    status: 'success',
+    results: commonPhrases.length,
+    data: {
+      commonPhrases: commonPhrases
+    }
+  });
+});
+
+// Get Recent Products for shop
+exports.getAllWordOfTheDay = catchAsync(async (req, res, next) => {
+  let wordOfTheDay;
+  const carWordOfTheDay = await Categories.find({
+    name: { $eq: 'wordOfTheDay' }
+  })
+    .populate('products')
+    .sort({ _id: -1 });
+  carWordOfTheDay.forEach(function(categorey) {
+    wordOfTheDay = categorey.products.reverse().slice(0, 20);
+  });
+
+  // SEND RESPONSE
+  res.status(200).json({
+    status: 'success',
+    results: wordOfTheDay.length,
+    data: {
+      wordOfTheDay: wordOfTheDay
+    }
+  });
+});
+
 exports.getAllNumbers = catchAsync(async (req, res, next) => {
   let numbers;
   const numbersCategorey = await Categories.find({

@@ -1,27 +1,24 @@
 <div class="wrapper">
     <!-- Navbar Start -->
     <%- include('../partials/header'); %>
-
-
         <%- include('../partials/Language.ejs'); %>
             <!-- Navbar End -->
             <!-- Main Container Start -->
             <main class="main--container">
                 <!-- Page Header End -->
-
                 <!-- Main Content Start -->
                 <section class="main--content p-3">
                     <div class="panel">
                         <div class="panel-content">
                             <!-- Form Wizard Start -->
-                            <form action="/admin_dashboard" enctype="multipart/form-data" method="post" id="formWizard" class="form--wizard">
+                            <form action="/admin_dashboard/quiz" enctype="multipart/form-data" method="post" id="formWizard" class="form--wizard">
                                 <% if (messageSuccessAdd.length > 0) { %>
                                     <div class="alert alert-success" style="font-size: 2rem; text-align: center;">
                                         <%= messageSuccessAdd %>
                                     </div>
                                     <% } %>
                                         <h3 style="text-align: center;  color:black; background-color: rgb(6, 110, 140);" class="p-2">
-                                            <%= i18n.__("Add Question")%>
+                                            <%= i18n.__("Add Quiz")%>
                                         </h3>
                                         <section class="pt-5">
                                             <div class="row">
@@ -43,7 +40,7 @@
                                                     <span class="label-text">
                                                         choice 1
                                                     </span>
-                                                    <input type="text" name="choice 1"
+                                                    <input type="text" name="choice1"
                                                         placeholder="choice 1"
                                                     class="form-control" required>
                                                 </label>
@@ -91,7 +88,7 @@
                                                     <span class="label-text">
                                                         right choice
                                                     </span>
-                                                    <input type="text" name="choice4"
+                                                    <input type="text" name="writeChoice"
                                                         placeholder="write correct choice"
                                                     class="form-control" required>
                                                 </label>
@@ -103,7 +100,7 @@
                                                     <span class="label-text">
                                                         <%= i18n.__("Category")%>
                                                     </span>
-                                                    <select name="categories" class="form-control" required>
+                                                    <select name="categories" class="form-control">
                                                         <option value="">
                                                             <%= i18n.__("choose a category")%>
                                                         </option>

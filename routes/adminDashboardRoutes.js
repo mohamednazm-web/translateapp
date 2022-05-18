@@ -13,4 +13,6 @@ router
   .route('/update/:id')
   .post(adminDashboardController.updateProductWithAdminDashboard);
 
+router.route('/quiz').post(adminDashboardController.createQuiz);
+
 module.exports = router;
