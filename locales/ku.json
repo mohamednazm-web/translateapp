@@ -76,6 +76,7 @@
 	"Image Banner Down Update": "نوێکردنەوەی وێنەکانی خوارەوەی بانێر",
 	"Manage Vedios": "بەڕێوەبردنی ڤیدیۆکان",
 	"Total Number of products": "کۆی گشتی ژمارەی وشەکان",
+	"Total Number of Quizes": "کۆی گشتی ژمارەی کویزەکان",
 	"Home page visiters": "ژمارەی سەردانیکردن",
 	"TOTAL NUMBER OF CAR SALES": "کۆی گشتی بڵاوکراوەکانی بەشی فرۆشتنی ئۆتۆمبێل",
 	"TOTAL NUMBER OF CAR BEAUTIFING": "کۆی گشتی بڵاوکراوەکانی بەشی جوانکاری ئۆتۆمبێل",
@@ -146,5 +147,7 @@
 	"Add Quiz": "Add Quiz",
 	"Quiz": "Quiz",
 	"Quizes": "Quizes",
-	"Quiz Type": "Quiz Type"
+	"Quiz Type": "Quiz Type",
+	"Total Number of Questions": "Total Number of Questions",
+	"Total Number of quizes": "Total Number of quizes"
 }

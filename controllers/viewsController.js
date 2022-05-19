@@ -17,10 +17,12 @@ exports.adminDashboard = catchAsync(async (req, res, next) => {
   const i18n = res.setLocale(req.cookies.i18n);
   console.log(i18n);
   const totalNumOfProducts = await Products.find().countDocuments();
+  const totalNumOfQuizes = await Quizes.find().countDocuments();
 
   // SEND RESPONSE
   res.status(200).render('pages/dashboard', {
     totalNumOfProducts,
+    totalNumOfQuizes,
     i18n: res,
     selectedI18n: i18n
   });
