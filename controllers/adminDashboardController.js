@@ -49,7 +49,8 @@ exports.createQuiz = async (req, res, next) => {
     right1,
     right2,
     right3,
-    right4
+    right4,
+    categories
   } = req.body;
 
   const rightChoices = [right1, right2, right3, right4];
@@ -74,10 +75,12 @@ exports.createQuiz = async (req, res, next) => {
 
   const quiz = new Quiz({
     question: title,
+    quizType: categories,
     ...answers
   });
 
   const newQuiz = await Quiz.create(quiz);
+  console.log(newQuiz);
   if (newQuiz) {
     req.flash('messageSuccessAdd', 'New quiz added successfully');
     res.redirect('back');

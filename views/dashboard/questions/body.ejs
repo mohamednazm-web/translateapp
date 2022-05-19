@@ -39,6 +39,10 @@
                                         <th>
                                             question
                                         </th>
+                                        <th>
+                                            quiz type
+                                        </th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -49,6 +53,11 @@
                                                 <a href="#" class="btn-link">
                                                     <%= product.question %>
                                                 </a>
+                                                <td>
+                                                    <% if(product.quizType !=null) {%>
+                                                        <%= product.quizType %>
+                                                            <% } %>
+                                                </td>
                                             </td>
                                             <td>
                                                 <div class="Editand">
