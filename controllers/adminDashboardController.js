@@ -6,6 +6,7 @@ const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
 const fileHelper = require('../utils/file');
 const fs = require('fs');
+const Quizes = require('./../models/quizModel');
 
 const ITEMS_PER_PAGE = 8;
 
@@ -39,55 +40,46 @@ exports.createProductWithAdminDashboard = async (req, res, next) => {
 };
 
 exports.createQuiz = async (req, res, next) => {
-  const i18n = res.setLocale(req.cookies.i18n);
-  const title = req.body.title;
-  const choice1 = req.body.choice1; // for kurdish
-  const choice2 = req.body.choice2;
-  const choice3 = req.body.choice3;
-  const choice4 = req.body.choice4;
-  const writeChoice = req.body.writeChoice;
+  const {
+    title,
+    choice1,
+    choice2,
+    choice3,
+    choice4,
+    right1,
+    right2,
+    right3,
+    right4
+  } = req.body;
+
+  const rightChoices = [right1, right2, right3, right4];
+  let numberOfCorrectAnswer = 0;
+  rightChoices.forEach(choice => {
+    if (choice === 'on') {
+      // eslint-disable-next-line no-plusplus
+      numberOfCorrectAnswer++;
+    }
+  });
+
+  if (numberOfCorrectAnswer > 1) {
+    req.flash('messageDangerAdd', 'please choose one as correct answer');
+  }
 
   const answers = {
-    a1: { a: choice1, i: 0 },
-    a2: { a: choice1, i: 0 },
-    a3: { a: choice1, i: 0 },
-    a4: { a: choice1, i: 0 }
+    a1: { a: choice1, i: right1 === 'on' ? 1 : 0 },
+    a2: { a: choice2, i: right2 === 'on' ? 1 : 0 },
+    a3: { a: choice3, i: right3 === 'on' ? 1 : 0 },
+    a4: { a: choice4, i: right4 === 'on' ? 1 : 0 }
   };
 
-  // eslint-disable-next-line array-callback-return
-  const res2 = answers.filter(function(answer) {
-    console.log(answer);
-  });
-  console.log(res);
-
-  return;
-
   const quiz = new Quiz({
-    title: title,
+    question: title,
     ...answers
   });
 
-  // quiz.foreach((a){
-
-  // });
-  console.log(quiz._id);
-  // const updateQuiz = await Quiz.update(
-  //   { _id: ObjectID(req.body.id) },
-  //   { $set: { i: writeChoice } }
-  // );
-  return;
-
-  const newProduct = await Product.create(product);
-
-  const doc = await Categories.updateMany(
-    { _id: newProduct.categories },
-    { $push: { products: newProduct._id } }
-  );
-
-  if (!doc) {
-    return next(new AppError('No document found with that ID', 404));
-  } else {
-    req.flash('messageSuccessAdd', 'ئەم بەرهەمە بەسەرکەوتوویی زیادکرا');
+  const newQuiz = await Quiz.create(quiz);
+  if (newQuiz) {
+    req.flash('messageSuccessAdd', 'New quiz added successfully');
     res.redirect('back');
   }
 };
@@ -111,6 +103,24 @@ exports.deleteProductWithAdminDashboard = async (req, res, next) => {
   }
 };
 
+exports.deleteQuizWithAdminDashboard = async (req, res, next) => {
+  const _id = req.body.productId;
+  const product = await Quizes.findOne({ _id });
+
+  const detailDelete = await product.remove();
+
+  if (detailDelete) {
+    res.redirect('back'); //pewista wa be agar na refersh nabitawa
+  }
+};
+exports.getAllQuizesWithAdminDashboard = catchAsync(async (req, res, next) => {
+  const quizes = await Quizes.find({}, { _id: 0, __v: 0 }).sort({ _id: -1 });
+
+  // SEND RESPONSE
+  res.status(200).json({
+    data: quizes
+  });
+});
 exports.updateProductWithAdminDashboard = async (req, res, next) => {
   const id = req.params.id;
 

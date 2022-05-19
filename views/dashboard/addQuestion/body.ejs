@@ -17,14 +17,19 @@
                                         <%= messageSuccessAdd %>
                                     </div>
                                     <% } %>
-                                        <h3 style="text-align: center;  color:black; background-color: rgb(6, 110, 140);" class="p-2">
-                                            <%= i18n.__("Add Quiz")%>
-                                        </h3>
-                                        <section class="pt-5">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>
+                                        <% if (messageDangerAdd.length > 0) { %>
+                                            <div class="alert alert-danger" style="font-size: 2rem; text-align: center;">
+                                                <%= messageDangerAdd %>
+                                            </div>
+                                            <% } %>
+                                                <h3 style="text-align: center;  color:black; background-color: rgb(6, 110, 140);" class="p-2">
+                                                    <%= i18n.__("Add Quiz")%>
+                                                </h3>
+                                                <section class="pt-5">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>
                                                     <span class="label-text">
                                                         write a question
                                                     </span>
@@ -32,11 +37,11 @@
                                                         placeholder="title"
                                                     class="form-control" required>
                                                 </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>
                                                     <span class="label-text">
                                                         choice 1
                                                     </span>
@@ -44,11 +49,23 @@
                                                         placeholder="choice 1"
                                                     class="form-control" required>
                                                 </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                    <span class="label-text">
+                                                        correct or not
+                                                    </span>
+                                                    <input type="checkbox" name="right1"
+                                                        placeholder="choice 1"
+                                                    class="form-control" >
+                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>
                                                     <span class="label-text">
                                                         choice 2
                                                     </span>
@@ -56,11 +73,23 @@
                                                         placeholder="choice2"
                                                     class="form-control" required>
                                                 </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                    <span class="label-text">
+                                                        correct or not
+                                                    </span>
+                                                    <input type="checkbox" name="right2"
+                                                        placeholder="choice 1"
+                                                    class="form-control" >
+                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>
                                                     <span class="label-text">
                                                         choice3
                                                     </span>
@@ -68,33 +97,45 @@
                                                         placeholder="choice3"
                                                     class="form-control" required>
                                                 </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                    <span class="label-text">
+                                                        correct or not
+                                                    </span>
+                                                    <input type="checkbox" name="right3"
+                                                        placeholder="right3"
+                                                    class="form-control" >
+                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>
                                                     <span class="label-text">
                                                         choice 4
                                                     </span>
                                                     <input type="text" name="choice4"
-                                                        placeholder="choice4"
+                                                        placeholder="choice 4"
                                                     class="form-control" required>
                                                 </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="form-group">
+                                                                <label>
                                                     <span class="label-text">
-                                                        right choice
+                                                        correct or not
                                                     </span>
-                                                    <input type="text" name="writeChoice"
-                                                        placeholder="write correct choice"
-                                                    class="form-control" required>
+                                                    <input type="checkbox" name="right4"
+                                                        placeholder="right4"
+                                                    class="form-control" >
                                                 </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>
                                                     <span class="label-text">
@@ -104,11 +145,7 @@
                                                         <option value="">
                                                             <%= i18n.__("choose a category")%>
                                                         </option>
-                                                        <!-- <% categories.forEach(function(category) { %>
-                                                            <option value="<%= category._id %>">
-                                                                <%= category.name %>
-                                                            </option>
-                                                            <% }); %> -->
+                                                       
                                                             <option value="">
                                                                 basic quiz
                                                             </option>
@@ -119,22 +156,22 @@
                                                     </select>
                                                 </label>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section class="P-3">
-                                            <div class="row">
-                                        </section>
-                                        <div class="col-md-12 pt-4">
-                                            <div class="form-group" style="text-align: center;">
-                                                <label>
+                                                </div> -->
+                                                    </div>
+                                                </section>
+                                                <section class="P-3">
+                                                    <div class="row">
+                                                </section>
+                                                <div class="col-md-12 pt-4">
+                                                    <div class="form-group" style="text-align: center;">
+                                                        <label>
                                             <span class="label-text"></span>
                                             <button type="submit" class="btn btn-success" style="border-radius:5px;">
                                                 <%= i18n.__("ADD A QUESTION")%>
                                             </button>
                                         </label>
-                                            </div>
-                                        </div>
+                                                    </div>
+                                                </div>
                             </form>
                             </div>
                         </div>

@@ -28,7 +28,7 @@ router.get('/nouns', productsController.getAllNouns);
 router.get('/adverbs', productsController.getAllAdverbs);
 router.get('/adjectives', productsController.getAllAdjectives);
 router.get('/commonPhraces', productsController.getAllCommonPhrases);
-router.get('/wordOfTheDay', productsController.getAllWordOfTheDay);
+router.get('/wordOfTheDay', productsController.getAllWordOfTheDays);
 
 router.route('/recentProducts').get(productsController.getRecentProducts);
 

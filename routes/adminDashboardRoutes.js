@@ -10,6 +10,12 @@ router
   .route('/delete-product')
   .post(adminDashboardController.deleteProductWithAdminDashboard);
 router
+  .route('/delete-quiz')
+  .post(adminDashboardController.deleteQuizWithAdminDashboard);
+router
+  .route('/getAllQuizes')
+  .get(adminDashboardController.getAllQuizesWithAdminDashboard);
+router
   .route('/update/:id')
   .post(adminDashboardController.updateProductWithAdminDashboard);
 

@@ -88,14 +88,15 @@ exports.getAllCommonPhrases = catchAsync(async (req, res, next) => {
 });
 
 // Get Recent Products for shop
-exports.getAllWordOfTheDay = catchAsync(async (req, res, next) => {
+//Get Recent Products for shop
+exports.getAllWordOfTheDays = catchAsync(async (req, res, next) => {
   let wordOfTheDay;
-  const carWordOfTheDay = await Categories.find({
+  const carWordOfTheDays = await Categories.find({
     name: { $eq: 'wordOfTheDay' }
   })
     .populate('products')
     .sort({ _id: -1 });
-  carWordOfTheDay.forEach(function(categorey) {
+  carWordOfTheDays.forEach(function(categorey) {
     wordOfTheDay = categorey.products.reverse().slice(0, 20);
   });
 
@@ -108,7 +109,6 @@ exports.getAllWordOfTheDay = catchAsync(async (req, res, next) => {
     }
   });
 });
-
 exports.getAllNumbers = catchAsync(async (req, res, next) => {
   let numbers;
   const numbersCategorey = await Categories.find({

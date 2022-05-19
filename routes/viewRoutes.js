@@ -10,6 +10,7 @@ router.get(
   verify,
   viewsController.productsOfdashboard
 );
+router.get('/admin_dashboard/quiz', verify, viewsController.quizOfDashboard);
 router.get(
   '/admin_dashboard/add-product',
   verify,

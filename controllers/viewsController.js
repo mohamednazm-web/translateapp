@@ -2,6 +2,7 @@ const Products = require('../models/productModel');
 const Categories = require('../models/categoriesModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const Quizes = require('../models/quizModel');
 
 const ITEMS_PER_PAGE = 8;
 
@@ -57,6 +58,36 @@ exports.productsOfdashboard = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.quizOfDashboard = catchAsync(async (req, res, next) => {
+  const page = +req.query.page || 1;
+  let totalItems;
+
+  const products = await Quizes.find()
+    .countDocuments()
+    .then(numProducts => {
+      totalItems = numProducts;
+      return Quizes.find()
+        .skip((page - 1) * ITEMS_PER_PAGE)
+        .limit(ITEMS_PER_PAGE)
+        .sort({ _id: -1 });
+    });
+
+  const i18n = res.setLocale(req.cookies.i18n);
+  // SEND RESPONSE
+  res.status(200).render('pages/quizeDashboard', {
+    products,
+    i18n: res,
+    selectedI18n: i18n,
+    totalNumItems: totalItems,
+    currentPage: page,
+    hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+    hasPreviousPage: page > 1,
+    nextPage: page + 1,
+    previousPage: page - 1,
+    lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE)
+  });
+});
+
 exports.addProductWithAdminDashboard = catchAsync(async (req, res, next) => {
   const categories = await Categories.find().populate('products'); //-_id
   const i18n = res.setLocale(req.cookies.i18n);
@@ -77,6 +108,7 @@ exports.addQuestionWithAdminDashboard = catchAsync(async (req, res, next) => {
   res.status(200).render('dashboard/addQuestion/index', {
     categories,
     messageSuccessAdd: req.flash('messageSuccessAdd'),
+    messageDangerAdd: req.flash('messageDangerAdd'),
     errorMessage: '',
     i18n: res,
     selectedI18n: i18n
